@@ -35,9 +35,22 @@ public class WebSocketHandler extends Thread {
                 System.out.println("Received: " + message);
                 
                 // Check if it's a username message
+                // In the run() method, modify the username handling:
                 if (message.startsWith("USERNAME:")) {
                     username = message.substring(9).trim();
                     WebSocket.broadcast("SERVER: " + username + " has joined via WebSocket!", this);
+                    
+                    // Send current user list to the newly connected user
+                    StringBuilder userList = new StringBuilder("USERLIST:");
+                    synchronized (WebSocket.getConnections()) {
+                        for (WebSocketHandler handler : WebSocket.getConnections()) {
+                            if (handler != this && handler.username != null) {
+                                userList.append(handler.username).append(",");
+                            }
+                        }
+                    }
+                    // Send the user list to only this client
+                    send(userList.toString());
                 } else {
                     // Regular chat message
                     WebSocket.broadcast(username + ": " + message, this);
