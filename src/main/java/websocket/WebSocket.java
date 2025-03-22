@@ -6,7 +6,6 @@ import java.util.*;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.regex.*;
-import java.util.Base64;
 
 public class WebSocket {
     private static final int WS_PORT = 9002;
@@ -51,5 +50,9 @@ public class WebSocket {
         MessageDigest sha1 = MessageDigest.getInstance("SHA-1");
         byte[] hash = sha1.digest(concatenated.getBytes());
         return Base64.getEncoder().encodeToString(hash);
+    }
+        // Add connection method to the WebSocket class
+    public static Set<WebSocketHandler> getConnections() {
+        return connections;
     }
 }
