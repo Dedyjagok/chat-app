@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat Application</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- 
+      Chat Application - A Socket & WebSocket based chat program
+      Copyright (C) 2023 Dedy Hutahaean Putra
+      
+      This program is free software: you can redistribute it and/or modify
+      it under the terms of the GNU General Public License as published by
+      the Free Software Foundation, either version 3 of the License, or any later version.
+    -->
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Real-time Chat Application</h1>
+            <div class="connection-status">
+                <span id="status" class="disconnected">Disconnected</span>
+                <div class="connection-type">
+                    <input type="radio" id="websocket" name="connection" value="websocket" checked>
+                    <label for="websocket">WebSocket</label>
+                    <input type="radio" id="socket" name="connection" value="socket">
+                    <label for="socket">Socket</label>
+                </div>
+            </div>
+        </header>
+
+        <main>
+            <div class="chat-container">
+                <div class="chat-messages" id="chat-messages">
+                    <div class="message system">Welcome to the chat! Please enter a username to connect.</div>
+                </div>
+                <div class="user-list" id="user-list">
+                    <h3>Online Users</h3>
+                    <ul id="users"></ul>
+                </div>
+            </div>
+
+            <div class="input-container">
+                <div id="username-container">
+                    <input type="text" id="username-input" placeholder="Enter your username">
+                    <button id="connect-btn">Connect</button>
+                </div>
+                <div id="message-container" style="display: none;">
+                    <input type="text" id="message-input" placeholder="Type your message...">
+                    <button id="send-btn">Send</button>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <p>Socket & WebSocket Chat Application &copy; 2025 <strong>Dedy Hutahaean Putra</strong></p>
+            <p class="license">This program is licensed under the <a href="https://www.gnu.org/licenses/gpl-3.0.html" target="_blank">GNU General Public License v3.0</a></p>
+            <p class="github-link">GitHub: <a href="https://github.com/Dedyjagok" target="_blank">https://github.com/Dedyjagok</a></p>
+        </footer>
+    </div>
+
+    <script src="chat.js"></script>
+</body>
+</html>
