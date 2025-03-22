@@ -148,6 +148,26 @@ document.addEventListener('DOMContentLoaded', () => {
         } else if (message.startsWith('SUBMIT_USERNAME')) {
             // This would only come from a Socket connection
             // We don't handle this here since we're using WebSockets in the browser
+        // Add to the processMessage function, around line 140
+        } else if (message.startsWith('USERLIST:')) {
+            // Handle full user list message from server
+            const userListStr = message.substring(9).trim();
+            if (userListStr) {
+                const users = userListStr.split(',');
+                
+                // Clear existing user list
+                userList.innerHTML = '';
+                
+                // Add all users to the list
+                users.forEach(user => {
+                    if (user && user !== username) {
+                        const userItem = document.createElement('li');
+                        userItem.textContent = user;
+                        userItem.id = 'user-' + user;
+                        userList.appendChild(userItem);
+                    }
+                });
+            }
         } else {
             // Regular user message
             const colonIndex = message.indexOf(':');
